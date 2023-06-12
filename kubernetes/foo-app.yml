@@ -1,0 +1,34 @@
+# ---
+# kind: ReplicaSet
+# apiVersion: v1
+# metadata:
+#   name: foo-app
+#   labels:
+#     app: foo
+# spec:
+#   replicas: 3
+#   containers:
+#     - name: foo-app
+#       image: 'kicbase/echo-server:1.0'
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foo-app
+  labels:
+    app: foo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: foo
+  template:
+    metadata:
+      labels:
+        app: foo
+    spec:
+      containers:
+      - name: foo-app
+        image: 'kicbase/echo-server:1.0'
+     

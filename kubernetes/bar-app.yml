@@ -1,0 +1,31 @@
+# ---
+# kind: Pod
+# apiVersion: v1
+# metadata:
+#   name: bar-app
+#   labels:
+#     app: bar
+# spec:
+#   containers:
+#     - name: bar-app
+#       image: 'kicbase/echo-server:1.0'
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bar-app
+  labels:
+    app: bar
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bar
+  template:
+    metadata:
+      labels:
+        app: bar
+    spec:
+      containers:
+      - name: bar-app
+        image: 'kicbase/echo-server:1.0'
